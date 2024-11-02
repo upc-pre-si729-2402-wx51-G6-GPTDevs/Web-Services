@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 public class TasklinkerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TasklinkerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TasklinkerApplication.class, args);
+    }
 
 }
