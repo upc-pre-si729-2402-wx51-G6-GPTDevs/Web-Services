@@ -9,9 +9,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import com.tasklinker.tasklinker.iam.domain.services.UserCommandService;
+import com.tasklinker.tasklinker.iam.interfaces.rest.resources.AuthenticatedUserResource;
 import com.tasklinker.tasklinker.iam.interfaces.rest.resources.SignInResource;
 import com.tasklinker.tasklinker.iam.interfaces.rest.resources.SignUpResource;
 import com.tasklinker.tasklinker.iam.interfaces.rest.resources.UserResource;
+import com.tasklinker.tasklinker.iam.interfaces.rest.transform.AuthenticatedUserResourceFromEntityAssembler;
 import com.tasklinker.tasklinker.iam.interfaces.rest.transform.SignInCommandFromResourceAssembler;
 import com.tasklinker.tasklinker.iam.interfaces.rest.transform.SignUpCommandFromResourceAssembler;
 import com.tasklinker.tasklinker.iam.interfaces.rest.transform.UserResourceFromEntityAssembler;
@@ -65,15 +67,16 @@ public class AuthenticationController {
      * @return the authenticated user resource.
      */
     @PostMapping("/sign-in")
-    public ResponseEntity<UserResource> signIn(@RequestBody SignInResource resource) {
+    public ResponseEntity<AuthenticatedUserResource> signIn(@RequestBody SignInResource resource) {
         var signInCommand = SignInCommandFromResourceAssembler.toCommandFromResource(resource);
-        var user = userCommandService.handle(signInCommand);
+        var authenticatedUser = userCommandService.handle(signInCommand);
 
-        if (user.isEmpty())
+        if (authenticatedUser.isEmpty())
             return ResponseEntity.notFound().build();
 
-        var userResource = UserResourceFromEntityAssembler.toResourceFromEntity(user.get());
+        var authenticatedUserResource = AuthenticatedUserResourceFromEntityAssembler
+                .toResourceFromEntity(authenticatedUser.get());
 
-        return ResponseEntity.ok(userResource);
+        return new ResponseEntity<>(authenticatedUserResource, HttpStatus.OK);
     }
 }

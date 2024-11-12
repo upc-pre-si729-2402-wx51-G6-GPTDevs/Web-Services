@@ -1,9 +1,10 @@
-package com.tasklinker.tasklinker.iam.application;
+package com.tasklinker.tasklinker.iam.application.internal.commandservices;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.tasklinker.tasklinker.iam.application.internal.outboundservices.tokens.jwt.TokenService;
 import com.tasklinker.tasklinker.iam.domain.model.aggregates.User;
 import com.tasklinker.tasklinker.iam.domain.model.commands.SignInCommand;
 import com.tasklinker.tasklinker.iam.domain.model.commands.SignUpCommand;
@@ -13,9 +14,11 @@ import com.tasklinker.tasklinker.iam.infrastructure.persistence.jpa.repositories
 @Service
 public class UserCommandServiceImpl implements UserCommandService {
     private final UserRepository userRepository;
+    private final TokenService tokenService;
 
-    public UserCommandServiceImpl(UserRepository userRepository) {
+    public UserCommandServiceImpl(UserRepository userRepository, TokenService tokenService) {
         this.userRepository = userRepository;
+        this.tokenService = tokenService;
     }
 
     @Override
@@ -29,7 +32,7 @@ public class UserCommandServiceImpl implements UserCommandService {
     }
 
     @Override
-    public Optional<User> handle(SignInCommand command) {
+    public Optional<String> handle(SignInCommand command) {
         var user = userRepository.findByEmail(command.email());
 
         if (user.isEmpty())
@@ -38,6 +41,12 @@ public class UserCommandServiceImpl implements UserCommandService {
         if (!command.password().equals(user.get().getPassword()))
             throw new RuntimeException("Invalid password");
 
-        return Optional.of(user.get());
+        var token = tokenService.generateToke(
+                user.get().getId(),
+                user.get().getName(),
+                user.get().getEmail());
+
+        return Optional.of(token);
+        // return Optional.of(user.get());
     }
 }
