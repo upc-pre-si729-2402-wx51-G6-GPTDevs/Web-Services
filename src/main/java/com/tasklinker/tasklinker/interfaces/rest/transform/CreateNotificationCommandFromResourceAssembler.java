@@ -1,6 +1,6 @@
 package com.tasklinker.tasklinker.interfaces.rest.transform;
 
-import com.tasklinker.tasklinker.Application.internal.command.SendNotificationCommand;
+import com.tasklinker.tasklinker.application.internal.command.SendNotificationCommand;
 import com.tasklinker.tasklinker.interfaces.rest.resources.CreateNotificationResource;
 
 public class CreateNotificationCommandFromResourceAssembler {
