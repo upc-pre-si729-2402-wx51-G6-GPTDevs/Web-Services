@@ -1,16 +1,16 @@
-package com.example.webservicenotificationsbc;
+package com.tasklinker.tasklinker;
 
-import com.example.webservicenotificationsbc.Application.internal.command.SendNotificationCommand;
-import com.example.webservicenotificationsbc.Application.internal.command.SendNotificationHandler;
-import com.example.webservicenotificationsbc.domain.model.entities.Notification;
-import com.example.webservicenotificationsbc.infrastructure.persistence.jpa.repositories.NotificationRepository;
+import com.tasklinker.tasklinker.Application.internal.command.SendNotificationCommand;
+import com.tasklinker.tasklinker.Application.internal.command.SendNotificationHandler;
+import com.tasklinker.tasklinker.domain.model.entities.Notification;
+import com.tasklinker.tasklinker.infrastructure.persistence.jpa.repositories.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class NotificationServiceTest {
+public class TasklinkerApplicationTests {
 
     @Autowired
     private NotificationRepository repository;
