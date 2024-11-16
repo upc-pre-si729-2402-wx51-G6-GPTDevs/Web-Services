@@ -1,7 +1,7 @@
 package com.tasklinker.tasklinker;
 
-import com.tasklinker.tasklinker.Application.internal.command.SendNotificationCommand;
-import com.tasklinker.tasklinker.Application.internal.command.SendNotificationHandler;
+import com.tasklinker.tasklinker.application.internal.command.SendNotificationCommand;
+import com.tasklinker.tasklinker.application.internal.command.SendNotificationHandler;
 import com.tasklinker.tasklinker.domain.model.entities.Notification;
 import com.tasklinker.tasklinker.infrastructure.persistence.jpa.repositories.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
