@@ -1,3 +1,3 @@
-package com.tasklinker.tasklinker.Application.internal.query;
+package com.tasklinker.tasklinker.application.internal.query;
 
 public record GetNotificationsQuery() {}
