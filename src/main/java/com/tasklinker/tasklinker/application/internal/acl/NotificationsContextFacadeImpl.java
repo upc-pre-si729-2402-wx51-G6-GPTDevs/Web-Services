@@ -1,11 +1,11 @@
-package com.tasklinker.tasklinker.Application.internal.acl;
+package com.tasklinker.tasklinker.application.internal.acl;
 
 import com.tasklinker.tasklinker.domain.model.entities.Notification;
 import org.springframework.stereotype.Service;
-import com.tasklinker.tasklinker.Application.internal.command.SendNotificationCommand;
-import com.tasklinker.tasklinker.Application.internal.query.GetNotificationsQuery;
-import com.tasklinker.tasklinker.Application.internal.command.SendNotificationHandler;
-import com.tasklinker.tasklinker.Application.internal.query.GetNotificationsHandler;
+import com.tasklinker.tasklinker.application.internal.command.SendNotificationCommand;
+import com.tasklinker.tasklinker.application.internal.query.GetNotificationsQuery;
+import com.tasklinker.tasklinker.application.internal.command.SendNotificationHandler;
+import com.tasklinker.tasklinker.application.internal.query.GetNotificationsHandler;
 import com.tasklinker.tasklinker.interfaces.rest.acl.NotificationContextFacade;
 
 import java.util.List;
