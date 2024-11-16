@@ -1,4 +1,4 @@
-package com.tasklinker.tasklinker.Application.internal.command;
+package com.tasklinker.tasklinker.application.internal.command;
 
 import com.tasklinker.tasklinker.domain.model.entities.Notification;
 import com.tasklinker.tasklinker.infrastructure.persistence.jpa.repositories.NotificationRepository;
