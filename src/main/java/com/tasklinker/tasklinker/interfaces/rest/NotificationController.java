@@ -1,9 +1,9 @@
 package com.tasklinker.tasklinker.interfaces.rest;
 
-import com.tasklinker.tasklinker.Application.internal.query.GetNotificationsQuery;
-import com.tasklinker.tasklinker.Application.internal.query.GetNotificationsHandler;
-import com.tasklinker.tasklinker.Application.internal.command.SendNotificationCommand;
-import com.tasklinker.tasklinker.Application.internal.command.SendNotificationHandler;
+import com.tasklinker.tasklinker.application.internal.query.GetNotificationsQuery;
+import com.tasklinker.tasklinker.application.internal.query.GetNotificationsHandler;
+import com.tasklinker.tasklinker.application.internal.command.SendNotificationCommand;
+import com.tasklinker.tasklinker.application.internal.command.SendNotificationHandler;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
