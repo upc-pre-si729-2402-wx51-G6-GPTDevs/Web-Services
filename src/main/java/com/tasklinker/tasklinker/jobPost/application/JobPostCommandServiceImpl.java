@@ -27,7 +27,6 @@ public class JobPostCommandServiceImpl implements JobPostCommandService {
 
     @Override
     public Optional<JobPost> handle(UpdateJobPostCommand command) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handle'");
     }
 
