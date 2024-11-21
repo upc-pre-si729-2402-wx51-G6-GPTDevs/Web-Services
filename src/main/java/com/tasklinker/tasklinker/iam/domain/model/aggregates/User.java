@@ -59,10 +59,10 @@ public class User extends AuditableAbstractAggregateRoot<User> {
         this.paymentCard = new PaymentCard(cardNumber, expirementDate, securityCode);
     }
 
-    public User(SignUpCommand command) {
+    public User(SignUpCommand command, String hashedPassword) {
         this.name = command.name();
         this.email = command.email();
-        this.password = command.password();
+        this.password = hashedPassword;
         this.phoneNumber = new PhoneNumber(command.phoneNumber());
         this.paymentCard = new PaymentCard(command.cardNumber(), command.expirementDate(), command.securityCode());
     }
