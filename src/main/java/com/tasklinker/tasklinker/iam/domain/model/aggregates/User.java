@@ -5,11 +5,8 @@ import java.time.LocalDate;
 import com.tasklinker.tasklinker.iam.domain.model.commands.SignInCommand;
 import com.tasklinker.tasklinker.iam.domain.model.commands.SignUpCommand;
 import com.tasklinker.tasklinker.iam.domain.model.entities.PaymentCard;
-import com.tasklinker.tasklinker.iam.domain.model.valueobjects.PhoneNumber;
 import com.tasklinker.tasklinker.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,8 +22,10 @@ import lombok.Setter;
 @Setter
 @Entity
 public class User extends AuditableAbstractAggregateRoot<User> {
-    @NotBlank
-    private String name;
+    /*
+     * @NotBlank
+     * private String name;
+     */
 
     @NotBlank
     @Email
@@ -36,11 +35,15 @@ public class User extends AuditableAbstractAggregateRoot<User> {
     @NotBlank
     private String password;
 
-    @NotNull
-    @AttributeOverrides({
-            @AttributeOverride(name = "number", column = @Column(name = "phone_number")),
-    })
-    private PhoneNumber phoneNumber;
+    /*
+     * @NotNull
+     * 
+     * @AttributeOverrides({
+     * 
+     * @AttributeOverride(name = "number", column = @Column(name = "phone_number")),
+     * })
+     * private PhoneNumber phoneNumber;
+     */
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
@@ -50,20 +53,20 @@ public class User extends AuditableAbstractAggregateRoot<User> {
     public User() {
     }
 
-    public User(String name, String email, String password, String phoneNumber, String cardNumber,
+    public User(String email, String password, String cardNumber,
             LocalDate expirementDate, String securityCode) {
-        this.name = name;
+        // this.name = name;
         this.email = email;
         this.password = password;
-        this.phoneNumber = new PhoneNumber(phoneNumber);
+        // this.phoneNumber = new PhoneNumber(phoneNumber);
         this.paymentCard = new PaymentCard(cardNumber, expirementDate, securityCode);
     }
 
     public User(SignUpCommand command, String hashedPassword) {
-        this.name = command.name();
+        // this.name = command.name();
         this.email = command.email();
         this.password = hashedPassword;
-        this.phoneNumber = new PhoneNumber(command.phoneNumber());
+        // this.phoneNumber = new PhoneNumber(command.phoneNumber());
         this.paymentCard = new PaymentCard(command.cardNumber(), command.expirementDate(), command.securityCode());
     }
 
@@ -72,9 +75,11 @@ public class User extends AuditableAbstractAggregateRoot<User> {
         this.password = command.password();
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber.number();
-    }
+    /*
+     * public String getPhoneNumber() {
+     * return phoneNumber.number();
+     * }
+     */
 
     public String getCardNumber() {
         return paymentCard.getCardNumber();

@@ -19,10 +19,8 @@ public class SignUpCommandFromResourceAssembler {
         }
 
         return new SignUpCommand(
-                resource.name(),
                 resource.email(),
                 resource.password(),
-                resource.phoneNumber(),
                 resource.cardNumber(),
                 expirementDate,
                 resource.securityCode());
