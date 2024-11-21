@@ -38,13 +38,12 @@ public class JobPost extends AuditableAbstractAggregateRoot<JobPost> {
 
     @NotNull
     private Double payment;
-    private String attachmentUrl;
 
     public JobPost() {
     }
 
     public JobPost(String title, String description, String contractType, String category, String location,
-                   LocalDate date, Double payment, String attachmentUrl) {
+            LocalDate date, Double payment) {
         this.title = title;
         this.description = description;
         this.contractType = contractType;
@@ -52,18 +51,15 @@ public class JobPost extends AuditableAbstractAggregateRoot<JobPost> {
         this.location = location;
         this.date = date;
         this.payment = payment;
-        this.attachmentUrl = attachmentUrl;
     }
 
     public JobPost(CreateJobPostCommand command) {
-        this.title = command.getTitle();
-        this.description = command.getDescription();
-        this.contractType = command.getContractType();
-        this.category = command.getCategory();
-        this.location = command.getLocation();
-        this.date = command.getDate();
-        this.payment = command.getPayment();
-        this.attachmentUrl = command.getAttachmentUrl();
+        this.title = command.title();
+        this.description = command.description();
+        this.contractType = command.contractType();
+        this.category = command.category();
+        this.location = command.location();
+        this.date = command.date();
+        this.payment = command.payment();
     }
 }
-

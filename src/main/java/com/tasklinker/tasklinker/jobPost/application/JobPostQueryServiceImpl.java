@@ -1,15 +1,15 @@
-package com.tasklinker.tasklinker.jobpost.application;
+package com.tasklinker.tasklinker.jobPost.application;
 
 import java.util.Optional;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.tasklinker.tasklinker.jobpost.domain.model.aggregates.JobPost;
-import com.tasklinker.tasklinker.jobpost.domain.model.queries.FindJobPostByIdQuery;
-import com.tasklinker.tasklinker.jobpost.domain.model.queries.ListJobPostsQuery;
-import com.tasklinker.tasklinker.jobpost.domain.services.JobPostQueryService;
-import com.tasklinker.tasklinker.jobpost.infrastructure.persistence.jpa.repositories.JobPostRepository;
+import com.tasklinker.tasklinker.jobPost.domain.model.aggregates.JobPost;
+import com.tasklinker.tasklinker.jobPost.domain.model.queries.GetJobPostByIdQuery;
+import com.tasklinker.tasklinker.jobPost.domain.model.queries.ListAllJobPostsQuery;
+import com.tasklinker.tasklinker.jobPost.domain.services.JobPostQueryService;
+import com.tasklinker.tasklinker.jobPost.infrastructure.persistence.jpa.repositories.JobPostRepository;
 
 @Service
 public class JobPostQueryServiceImpl implements JobPostQueryService {
@@ -20,12 +20,13 @@ public class JobPostQueryServiceImpl implements JobPostQueryService {
     }
 
     @Override
-    public Optional<JobPost> handle(FindJobPostByIdQuery query) {
-        return jobPostRepository.findById(query.getJobPostId());
+    public Optional<JobPost> handle(GetJobPostByIdQuery query) {
+        return jobPostRepository.findById(query.id());
     }
 
     @Override
-    public List<JobPost> handle(ListJobPostsQuery query) {
+    public List<JobPost> handle(ListAllJobPostsQuery query) {
         return jobPostRepository.findAll();
     }
+
 }

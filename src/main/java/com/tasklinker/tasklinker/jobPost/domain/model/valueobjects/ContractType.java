@@ -11,9 +11,9 @@ public record ContractType(@NotBlank String type) {
 
     public ContractType {
         if (!type.equalsIgnoreCase("Full-Time") &&
-            !type.equalsIgnoreCase("Part-Time") &&
-            !type.equalsIgnoreCase("Freelance") &&
-            !type.equalsIgnoreCase("Temporary")) {
+                !type.equalsIgnoreCase("Part-Time") &&
+                !type.equalsIgnoreCase("Freelance") &&
+                !type.equalsIgnoreCase("Temporary")) {
             throw new IllegalArgumentException("Invalid contract type.");
         }
     }

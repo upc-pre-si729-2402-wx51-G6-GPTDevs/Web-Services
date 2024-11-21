@@ -1,8 +1,10 @@
-package com.tasklinker.jobPost.domain.services;
+package com.tasklinker.tasklinker.jobPost.domain.services;
 
-public interface NotificationService {
+public interface JobPostNotificationService {
 
     void sendJobPostCreatedNotification(Long jobId);
+
     void sendJobPostUpdatedNotification(Long jobId);
+
     void sendJobPostDeletedNotification(Long jobId);
 }

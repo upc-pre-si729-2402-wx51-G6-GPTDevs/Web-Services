@@ -5,7 +5,7 @@ import java.util.Optional;
 import com.tasklinker.tasklinker.jobPost.domain.model.aggregates.JobPost;
 import com.tasklinker.tasklinker.jobPost.domain.model.commands.CreateJobPostCommand;
 import com.tasklinker.tasklinker.jobPost.domain.model.commands.UpdateJobPostCommand;
-import com.tasklinker.tasklinker.jobPost.domain.model.commands.DeleteJobPostCommand;
+//import com.tasklinker.tasklinker.jobPost.domain.model.commands.DeleteJobPostCommand;
 
 public interface JobPostCommandService {
 
@@ -13,5 +13,5 @@ public interface JobPostCommandService {
 
     Optional<JobPost> handle(UpdateJobPostCommand command);
 
-    void handle(DeleteJobPostCommand command);
+    // void handle(DeleteJobPostCommand command);
 }
