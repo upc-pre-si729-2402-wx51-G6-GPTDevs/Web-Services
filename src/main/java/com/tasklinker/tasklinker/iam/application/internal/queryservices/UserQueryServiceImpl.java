@@ -1,4 +1,4 @@
-package com.tasklinker.tasklinker.iam.application;
+package com.tasklinker.tasklinker.iam.application.internal.queryservices;
 
 import java.util.Optional;
 
