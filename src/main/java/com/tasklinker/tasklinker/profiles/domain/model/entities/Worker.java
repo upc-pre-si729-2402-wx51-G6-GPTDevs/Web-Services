@@ -30,24 +30,29 @@ public class Worker extends AuditableAbstractAggregateRoot<Worker> {
     @Embedded
     private Photo photo;
 
-    public Worker(){}
+    public Worker() {
+    }
 
-    public Worker(String firstname, String lastname, String emailAddress, String street, String numberStreet, String district, String postalCode, String city, String country, String area, Double experienceWorking, String countryCode, String number, Double value, String skillName, String descriptionSkill, String photoUrl) {
+    public Worker(String firstname, String lastname, String emailAddress, String street, String numberStreet,
+            String district, String postalCode, String city, String country, String area, Double experienceWorking,
+            String countryCode, String number, Double value, String skillName, String descriptionSkill,
+            String photoUrl) {
 
-        this.address = new Address( street, numberStreet, district,  postalCode,  city,  country);
+        this.address = new Address(street, numberStreet, district, postalCode, city, country);
         this.emailAddress = new EmailAddress(emailAddress);
         this.experience = new Experience(area, experienceWorking);
         this.fullName = new FullName(firstname, lastname);
         this.phoneNumber = new PhoneNumber(countryCode, number);
         this.rating = new Rating(value);
         this.skills = new Skills(skillName, descriptionSkill);
-        this.photo=new Photo(photoUrl);
+        this.photo = new Photo(photoUrl);
 
     }
 
-    public Worker(CreateWorkerCommand command){
+    public Worker(CreateWorkerCommand command) {
 
-        this.address = new Address( command.street(), command.numberStreet(), command.district(), command.postalCode(), command.city(), command.country());
+        this.address = new Address(command.street(), command.numberStreet(), command.district(), command.postalCode(),
+                command.city(), command.country());
         this.emailAddress = new EmailAddress(command.emailAddress());
         this.experience = new Experience(command.area(), command.experienceWorking());
         this.fullName = new FullName(command.firstname(), command.lastname());
@@ -58,21 +63,36 @@ public class Worker extends AuditableAbstractAggregateRoot<Worker> {
 
     }
 
-    public String getAddress() {return address.getAddress();}
+    public FullName getFullName() {
+        return fullName;
+    }
 
-    public String getEmailAddress() {return emailAddress.address();}
+    public Address getAddress() {
+        return address;
+    }
 
-    public String getExperience(){return experience.getExperience();}
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
+    }
 
-    public String getFullName(){return fullName.getFullName();}
+    public Experience getExperience() {
+        return experience;
+    }
 
-    public String getPhoneNumber(){return phoneNumber.getPhoneNumber();}
+    public Rating getRating() {
+        return rating;
+    }
 
-    public String getRating(){return rating.getRating();}
+    public Skills getSkills() {
+        return skills;
+    }
 
-    public String getSkills(){return skills.getSkills();}
+    public EmailAddress getEmailAddress() {
+        return emailAddress;
+    }
 
-    public String getPhoto(){return photo.getPhoto();}
-
+    public Photo getPhoto() {
+        return photo;
+    }
 
 }

@@ -7,11 +7,16 @@ public class EmployerResourceFromEntityAssembler {
     public static EmployerResource toResourceFromEntity(Employer entity) {
         return new EmployerResource(
                 entity.getId(),
-                entity.getFullName(),
-                entity.getCompanyDetails(),
-                entity.getPhoneNumber(),
-                entity.getPhoto(),
-                entity.getPaymentMethod()
-        );
+                entity.getFullName().firstname(),
+                entity.getFullName().lastname(),
+                entity.getCompanyDetails().location(),
+                entity.getCompanyDetails().name(),
+                entity.getCompanyDetails().numberOfEmployees(),
+                entity.getCompanyDetails().website(),
+                entity.getIndustry().getIndustryName(),
+                entity.getPhoneNumber().countryCode(),
+                entity.getPhoneNumber().number(),
+                entity.getPhoto().photoUrl(),
+                entity.getPaymentMethod().paymentMethod());
     }
 }
