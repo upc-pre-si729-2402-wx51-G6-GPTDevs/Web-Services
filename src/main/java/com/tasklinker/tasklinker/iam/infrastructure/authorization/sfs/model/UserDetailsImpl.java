@@ -1,14 +1,15 @@
 package com.tasklinker.tasklinker.iam.infrastructure.authorization.sfs.model;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tasklinker.tasklinker.iam.domain.model.aggregates.User;
 
-import io.jsonwebtoken.lang.Collections;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -30,10 +31,10 @@ public class UserDetailsImpl implements UserDetails {
     private final boolean enabled;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(String username, String password) {
+    public UserDetailsImpl(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;
         this.password = password;
-        this.authorities = Collections.emptyList();
+        this.authorities = authorities;
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;
@@ -48,8 +49,11 @@ public class UserDetailsImpl implements UserDetails {
      * @return The UserDetailsImpl object.
      */
     public static UserDetailsImpl build(User user) {
+        Collection<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+
         return new UserDetailsImpl(
                 user.getEmail(),
-                user.getPassword());
+                user.getPassword(),
+                authorities);
     }
 }
